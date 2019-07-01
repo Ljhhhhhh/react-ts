@@ -2,9 +2,11 @@
   "name": "react-ts",
   "version": "0.1.0",
   "private": true,
+  "typings": "./index.d.ts",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts-ts": "3.1.0"
   },
   "scripts": {
@@ -19,6 +21,7 @@
     "@types/node": "^12.0.10",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.4",
     "enzyme": "^3.10.0",
     "react-addons-test-utils": "^15.6.2",
     "typescript": "^3.5.2"
