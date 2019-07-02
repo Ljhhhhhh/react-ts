@@ -1,78 +1,26 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import BasicLayout from '../layouts/BasicLayout';
-import BlankLayout from '../layouts/BlankLayout';
-import ExceptionLayout from '../layouts/ExceptionLayout';
 
 import Home from '../pages/home'
 import About from '../pages/about'
 import Login from '../pages/login'
+import NoMatch from '../pages/noMatch'
 
 const Router = () => {
-  const RouterMap = [
-    {
-      path: '/404',
-      exact: true,
-      component: ExceptionLayout
-    },
-    {
-      path: '/login',
-      exact: true,
-      component: Login,
-      layout: BlankLayout
-    },
-    {
-      path: '/home',
-      exact: true,
-      component: Home,
-      layout: BasicLayout
-    },
-    {
-      path: '/about',
-      exact: true,
-      component: About,
-      layout: BasicLayout
-    },
-  ]
-
-  const renderLayout = (route:any) => {
-    const layout:any = route.layout || null;
-    
-    
-    return layout ? <layout><Route {...route} /></layout> : <Route {...route} />
-  }
   return (
     <BrowserRouter>
       <Switch>
-        {
-          RouterMap.map(r => {
-            return renderLayout(r)
-          })
-        }
+        <Route exact={true} path="/login" component={Login} />
+        <Route exact={true} path="/404" component={NoMatch} />
+        <BasicLayout>
+          <Route exact={true} path="/home" component={Home} />
+          <Route exact={true} path="/about" component={About} />
+          <Redirect to="/404" />
+        </BasicLayout>
       </Switch>
     </BrowserRouter>
   )
 }
 
-// const Basic = () => {
-//   return (
-//     <BasicLayout>
-//       <Route exact={true} path='/' component={Home} />
-//       <Route exact={true} path='/about' component={About} />
-//       <Redirect to="/" />
-//     </BasicLayout>
-//   )
-// }
-
 export default Router;
-
-// export default [
-//   {
-//     path: '/home',
-//     component: Home,
-//   },
-//   {
-//     path: '/about',
-//     component: About,
-//   }
-// ];
